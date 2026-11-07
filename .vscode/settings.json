@@ -1,0 +1,19 @@
+{
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default",
+        "enableSsl": "Disabled"
+      },
+      "ssh": "Disabled",
+      "previewLimit": 50,
+      "server": "mysql.metropolia.fi",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "Metropolia DB server",
+      "database": "jonatago",
+      "username": "jonatago",
+      "askForPassword": true
+    }
+  ]
+}
