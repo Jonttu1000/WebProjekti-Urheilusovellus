@@ -1,13 +1,4 @@
--- ============================================================================
--- URHEILUKAUPPA / Web-projekti 
--- Tietokannan CREATE TABLE -skeema, versio 1.0 (07.11.2026)
--- Kohde: MariaDB 10.6+ / MySQL 8.0.16+ (InnoDB)
--- Kaikki rahasummat sentteina (esim. 19,90 EUR = 1990).
 
---
--- Taulut luodaan FK-riippuvuuksien mukaisessa jarjestyksessa.
--- Taulut alustetaan uudelleen skeeman käyttöönottoa varten.
--- ============================================================================
 SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS order_status_history;
 DROP TABLE IF EXISTS loyalty_transactions;
@@ -538,28 +529,3 @@ CREATE TABLE order_status_history (
         REFERENCES users (id) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- ============================================================================
--- SOVELLUKSEN VASTUULLA (ei hoideta pelkalla CREATE TABLE -skeemalla):
--- 1) Hyvaksytty maksu todennetaan maksupalveluntarjoajan backend-ilmoituksesta.
--- 2) Varastovaraus: ehdollinen UPDATE inventory.quantity_reserved sekunti-
---    kilpailulta suojattuna, seka inventory_reservations-rivi samassa SQL-transaktiossa.
--- 3) Maksun onnistuessa HELD -> ALLOCATED; lahetyksessa on_hand ja reserved alas;
---    maksun epaonnistuessa/vanhentuessa varaus vapautetaan.
--- 4) Loyalty-saldo = SUM(loyalty_transactions.points_delta) - aktiiviset
---    loyalty_holds.points. Lukitse user-rivi SELECT ... FOR UPDATE ennen varausta.
--- 5) Saldon, hinnan, VAT:n, kampanja-alennuksen ja pisteet laskee backend,
---    EI selaimesta saatu summa. Tilauksen item-snapshotit paivitetaan samassa TX:ssa.
--- 6) Pistevaraus HELD -> CAPTURED ja negatiivinen loyalty_transactions-rivi
---    samassa transaktiossa maksun vahvistuksen jalkeen; epaonnistuessa RELEASED.
--- 7) Kun READY_FOR_PICKUP, laske deadline sijainnin default_pickup_days-asetuksesta
---    (aluksi 14); deadlinea voi muokata tilauskohtaisesti.
--- 8) Noutamatta jaaneen tilauksen RETURNED tilassa laheta hyvitys ja kirjaa
---    refunds; palauta fyysinen varastosaldo vasta vastaanotettaessa keskusvarastoon.
--- 9) Palautusten, pistelunastusten ja maksujen webhookit kasitellaan idempotentisti.
--- 10) locations-tyypit (nouto vs varasto), lähetyksen suunnat ja tilojen
---     sallitut siirtymat validoidaan Express-backendissa.
--- 11) Toteutettaessa oikea maksuliikenne tarkista ALV-kasittely, kuluttaja-
---     oikeudet, tilaus-/maksupalvelun ehdot ja henkilötietojen sailytysajat.
--- 12) Vierastilaus: orders.user_id IS NULL, mutta kaikki tilaajan
---     yhteystiedot ovat edelleen orders-taulussa.
--- ============================================================================

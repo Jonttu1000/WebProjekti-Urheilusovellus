@@ -1,13 +1,4 @@
--- ============================================================================
--- URHEILUKAUPPA / Web-projekti 
--- Tietokannan CREATE TABLE -skeema, versio 1.0 (07.11.2026)
--- Kohde: MariaDB 10.6+ / MySQL 8.0.16+ (InnoDB)
--- Kaikki rahasummat sentteina (esim. 19,90 EUR = 1990).
 
---
--- Taulut luodaan FK-riippuvuuksien mukaisessa jarjestyksessa.
--- Taulut alustetaan uudelleen skeeman käyttöönottoa varten.
--- ============================================================================
 SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS order_status_history;
 DROP TABLE IF EXISTS loyalty_transactions;
