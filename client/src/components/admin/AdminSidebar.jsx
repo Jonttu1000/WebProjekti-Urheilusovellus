@@ -2,38 +2,34 @@ import { NavLink, Link } from "react-router";
 
 const AdminSidebar = () => {
   return (
-    <aside>
-      <h2>Sport Admin</h2>
+    <aside className="admin-sidebar">
+      <h2 className="admin-sidebar__title">Sport Admin</h2>
 
-      <nav>
-        <ul>
+      <nav className="admin-sidebar__nav">
+        <ul className="admin-sidebar__list">
           <li>
-            <NavLink to="/admin/products">
-              Manage Products
-            </NavLink>
+            <NavLink className="admin-sidebar__link" to="/admin/products">Manage Products</NavLink>
           </li>
 
           <li>
-            <NavLink to="/admin/variants">
-              Manage Variants
-            </NavLink>
+            <NavLink className="admin-sidebar__link" to="/admin/variants">Manage Variants</NavLink>
           </li>
 
           <li>
-            <NavLink to="/admin/shipments">
-              Manage Shipments
-            </NavLink>
+            <NavLink className="admin-sidebar__link" to="/admin/shipments">Manage Shipments</NavLink>
           </li>
 
           <li>
-            <NavLink to="/admin/analytics">
-              Analytics
-            </NavLink>
+            <NavLink className="admin-sidebar__link" to="/admin/analytics">Analytics</NavLink>
+          </li>
+
+          <li>
+            <NavLink className="admin-sidebar__link" to="/admin/data">Manage Data</NavLink>
           </li>
         </ul>
       </nav>
 
-      <Link to="/">Back to Store</Link>
+      <Link className="admin-sidebar__back" to="/">Back to Store</Link>
     </aside>
   );
 };

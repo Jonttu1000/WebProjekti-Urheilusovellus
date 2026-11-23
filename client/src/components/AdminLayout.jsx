@@ -3,10 +3,10 @@ import AdminSidebar from "./admin/AdminSidebar.jsx";
 
 const AdminLayout = () => {
   return (
-    <div>
+    <div className="admin-layout">
       <AdminSidebar />
 
-      <main>
+      <main className="admin-main">
         <Outlet />
       </main>
     </div>
