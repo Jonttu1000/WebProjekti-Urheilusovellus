@@ -8,3 +8,5 @@ server/uploads/*
 
 dist/
 .DS_Store
+
+public/uploads/*
