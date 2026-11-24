@@ -1,0 +1,571 @@
+:root {
+  --ink: #121417;          /* Tumma teräs / hiili */
+  --steel: #1e242b;        /* Teräksinen korostuspinta */
+  --pitch: #0b0c0e;        /* Syvä musta kampanjanauhaan */
+  --surface: #ffffff;      /* Puhdas valkoinen pääpinta */
+  --soft: #f6f6f4;         /* Lämmin vaaleanharmaa korteille */
+  --line: #e2e2df;         /* Hienovarainen reunaviiva */
+  --gold: #f59e0b;         /* Kulta / meripihka (pääkorostus) */
+  --gold-hover: #d97706;   /* Tummempi kulta hover-tilaan */
+  --red: #dc2626;          /* Tarjous- ja alennuskorostus */
+  --muted: #55595e;        /* Aputekstit */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--ink);
+  background-color: var(--surface);
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Ylin info-nauha */
+.top-trust-bar {
+  background-color: var(--soft);
+  border-bottom: 1px solid var(--line);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.trust-inner {
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.trust-links {
+  display: flex;
+  gap: 16px;
+}
+
+.trust-links a {
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.trust-links a:hover {
+  text-decoration: underline;
+}
+
+/* Pääyläpalkki */
+.main-header {
+  background-color: var(--ink);
+  color: var(--surface);
+  position: relative;
+  z-index: 60;
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--surface);
+}
+
+.brand-mark {
+  background-color: var(--gold);
+  color: var(--ink);
+  font-weight: 900;
+  font-size: 1.4rem;
+  padding: 4px 10px;
+  border-radius: 2px;
+  letter-spacing: -0.5px;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.08;
+}
+
+.brand-text strong {
+  font-size: 1.15rem;
+  letter-spacing: 0.8px;
+}
+
+.brand-text small {
+  font-size: 0.62rem;
+  color: #cbd2d9;
+  letter-spacing: 0.6px;
+}
+
+/* Hakukenttä */
+.header-search {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background-color: var(--soft);
+  border-radius: 3px;
+  height: 40px;
+  padding: 0 12px;
+}
+
+.search-loupe {
+  margin-right: 8px;
+  font-size: 0.9rem;
+}
+
+.header-search input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 0.92rem;
+  color: var(--ink);
+}
+
+/* Kirjautuminen, suosikit, ostoskori */
+.header-tools {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.tool-btn {
+  position: relative;
+  background: none;
+  border: none;
+  color: var(--surface);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+
+.tool-btn:hover {
+  color: var(--gold);
+}
+
+.icon-only {
+  padding-right: 8px;
+}
+
+.tool-icon {
+  font-size: 1.3rem;
+}
+
+.cart-counter,
+.mini-pill {
+  position: absolute;
+  top: -6px;
+  right: -2px;
+  min-width: 19px;
+  height: 19px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background-color: var(--gold);
+  color: var(--ink);
+  font-size: 0.72rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Kategoriapalkki */
+.nav-strip {
+  border-top: 1px solid #262b33;
+  background-color: var(--surface);
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-items {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.nav-cat-btn {
+  background: none;
+  border: none;
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 8px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  border-radius: 2px;
+}
+
+.nav-cat-btn:hover,
+.nav-cat-btn.is-open {
+  background-color: var(--soft);
+  color: var(--pitch);
+}
+
+.nav-cat-highlight {
+  background-color: var(--ink);
+  color: var(--gold);
+  font-weight: 800;
+  letter-spacing: 0.4px;
+}
+
+.nav-cat-highlight:hover,
+.nav-cat-highlight.is-open {
+  background-color: var(--gold);
+  color: var(--ink);
+}
+
+/* Dropdown / Mega-valikko */
+.dropdown-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background-color: var(--surface);
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.14);
+  padding: 24px 0;
+}
+
+.dropdown-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 28px;
+}
+
+.dropdown-links-col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.link-group h4 {
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+.group-all {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+  width: 100%;
+}
+
+.link-group ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.link-group a {
+  text-decoration: none;
+  color: #26292e;
+  font-size: 0.88rem;
+}
+
+.link-group a:hover {
+  text-decoration: underline;
+}
+
+.dropdown-cards-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.visual-tile {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 16px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 130px;
+}
+
+.tile-light {
+  background-color: var(--soft);
+  color: var(--ink);
+}
+
+.tile-lime {
+  background-color: var(--gold);
+  color: var(--ink);
+}
+
+.tile-dark {
+  background-color: var(--steel);
+  color: var(--surface);
+}
+
+.tile-tag {
+  align-self: flex-start;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 3px 7px;
+  background-color: rgba(0, 0, 0, 0.12);
+  border-radius: 2px;
+}
+
+.tile-dark .tile-tag {
+  background-color: var(--gold);
+  color: var(--ink);
+}
+
+/* Kampanjanauha */
+.announcement-bar {
+  background-color: var(--pitch);
+  color: var(--surface);
+  text-align: center;
+  font-size: 0.78rem;
+  padding: 8px 16px;
+  letter-spacing: 0.4px;
+}
+
+.announcement-bar a {
+  color: var(--gold);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.announcement-bar a:hover {
+  text-decoration: underline;
+}
+
+/* Pääsisältö */
+.content-area {
+  padding-top: 20px;
+  padding-bottom: 44px;
+}
+
+.promo-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.hero-panel {
+  color: var(--surface);
+  padding: 34px 30px;
+  min-height: 270px;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.panel-dark {
+  background: linear-gradient(135deg, #121417 0%, #262d36 100%);
+}
+
+.panel-accent {
+  background: linear-gradient(135deg, #1c1917 0%, #362f26 100%);
+}
+
+.tag-lime {
+  background-color: var(--gold);
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 4px 9px;
+  border-radius: 2px;
+}
+
+.hero-panel h2 {
+  font-size: 2.1rem;
+  line-height: 1.1;
+}
+
+.text-red {
+  color: var(--gold);
+}
+
+.price-line {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.price-now {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: var(--gold);
+}
+
+.price-off {
+  background-color: var(--red);
+  color: var(--surface);
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 2px 7px;
+}
+
+.price-was {
+  font-size: 0.88rem;
+  color: #d6d3d1;
+}
+
+.btn-light {
+  margin-top: 6px;
+  background-color: var(--surface);
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 10px 16px;
+  border-radius: 2px;
+}
+
+.btn-light:hover {
+  background-color: var(--gold);
+}
+
+/* Visuaalinen tuoteryhmäosio */
+.showcase-section {
+  margin-top: 28px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.section-heading h2 {
+  font-size: 1.25rem;
+}
+
+.section-heading a {
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.section-heading a:hover {
+  text-decoration: underline;
+}
+
+.showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 14px;
+}
+
+.showcase-card {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 18px 14px;
+  min-height: 140px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.showcase-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--ink);
+}
+
+.card-light {
+  background-color: var(--soft);
+  color: var(--ink);
+}
+
+.card-lime {
+  background-color: var(--gold);
+  color: var(--ink);
+}
+
+.card-dark {
+  background-color: var(--steel);
+  color: var(--surface);
+}
+
+.card-chip {
+  align-self: flex-start;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 2px;
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+.card-dark .card-chip {
+  background-color: var(--gold);
+  color: var(--ink);
+}
+
+.showcase-card strong {
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+}
+
+.showcase-card span:last-child {
+  font-size: 0.78rem;
+  opacity: 0.85;
+}
+
+/* Responsiivisuus */
+@media (max-width: 960px) {
+  .promo-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .showcase-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .dropdown-grid,
+  .dropdown-links-col,
+  .dropdown-cards-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .header-row {
+    flex-wrap: wrap;
+  }
+
+  .header-search {
+    order: 3;
+    flex-basis: 100%;
+  }
+
+  .showcase-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
